@@ -9,8 +9,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
+import com.tradingplataform.feignclients.ProductFeignClient;
 import com.tradingplataform.models.User;
-import com.tradingplataform.models.resttemplates.Product;
+import com.tradingplataform.models.resttemplates_feign.Product;
 import com.tradingplataform.repository.UserRepository;
 import com.tradingplataform.service.IUserService;
 
@@ -20,7 +21,7 @@ public class UserService implements IUserService{
 	
 	Logger log = Logger.getLogger(UserService.class);
 	
-	// Prueba
+	// Prueba RestTemplate
 	@Autowired
 	private RestTemplate restTemplate;
 	
@@ -28,6 +29,19 @@ public class UserService implements IUserService{
 		
 		List<Product> products = restTemplate.getForObject("http://localhost:8081//product/byuser/" + userId, List.class);
 		return products;	
+	}
+	/////////////////////////////////////////////////////////////////
+	
+	
+	// Prueba Feign
+	@Autowired
+	private ProductFeignClient productFeignClient;
+	
+	public Product save(Product product, int userId) {
+		// Pasar el id del usuario
+		product.setUserId(userId);
+		Product productNew = productFeignClient.save(product);
+		return productNew;
 	}
 	/////////////////////////////////////////////////////////////////
 	
@@ -60,6 +74,8 @@ public class UserService implements IUserService{
 		userRepository.deleteById(id);
 		log.info("User deleted with id: " + id);
 	}
+
+
 
 
 }

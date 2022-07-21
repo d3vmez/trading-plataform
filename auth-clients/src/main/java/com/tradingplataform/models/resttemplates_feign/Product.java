@@ -1,4 +1,4 @@
-package com.tradingplataform.models.resttemplates;
+package com.tradingplataform.models.resttemplates_feign;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,6 +11,9 @@ public class Product {
 	
 	private String name;
 	private double price;
+	
+	// Feign
 	private int userId;
+	
 
 }

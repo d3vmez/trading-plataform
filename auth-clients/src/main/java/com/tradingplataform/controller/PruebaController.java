@@ -8,11 +8,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tradingplataform.models.User;
-import com.tradingplataform.models.resttemplates.Product;
+import com.tradingplataform.models.resttemplates_feign.Product;
 import com.tradingplataform.service.impl.UserService;
 
 @RestController
@@ -23,6 +25,7 @@ public class PruebaController {
 	@Autowired
 	private UserService userService;
 	
+	// Usando RestTemplate
 	@GetMapping("/product/{userId}")
 	public ResponseEntity<List<Product>> getProducts(@PathVariable("userId") int userId){
 		Optional<User> user = userService.find(userId);
@@ -34,6 +37,17 @@ public class PruebaController {
 			return ResponseEntity.ok(products);
 		}
 	}
+	/////////////////////////////////////////////////////////////////
+	
+	// Usando Feign
+	@PostMapping("/createproduct/{userId}")
+	public ResponseEntity<Product> createProduct(@PathVariable("userId") int userId, @RequestBody Product product){
+	
+		Product productNew = userService.save(product, userId);
+		return ResponseEntity.ok(productNew);
+	
+	}
+	/////////////////////////////////////////////////////////////////
 
 
 }

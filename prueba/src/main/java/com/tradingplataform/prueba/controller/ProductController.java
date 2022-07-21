@@ -38,7 +38,7 @@ public class ProductController {
         return ResponseEntity.ok(product.get());
     }
 
-    @PostMapping
+    @PostMapping()
     public ResponseEntity<Product> save(@RequestBody Product product) {
         Product productNew = productService.save(product);
         return ResponseEntity.ok(productNew);

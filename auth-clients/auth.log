@@ -97,3 +97,5 @@
 [2022-07-20 12:30:06] [ DEBUG] [JwtProvider:68] marcoss@marcos.com
 [2022-07-20 12:31:34] [ ERROR] [JwtProvider:77] Malformed Jwt
 [2022-07-20 12:31:34] [ ERROR] [JwtEntryPoint:31] fail in commence
+[2022-07-21 12:45:27] [ ERROR] [JwtProvider:85] Expired Jwt
+[2022-07-21 12:45:27] [ ERROR] [JwtEntryPoint:31] fail in commence
