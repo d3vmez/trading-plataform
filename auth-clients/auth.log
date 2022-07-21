@@ -1,0 +1,99 @@
+[2022-07-20 10:43:47] [ ERROR] [JwtEntryPoint:31] Error in method commence
+[2022-07-20 10:52:16] [ ERROR] [JwtEntryPoint:31] Error in method commence
+[2022-07-20 10:55:32] [ ERROR] [JwtEntryPoint:31] fail in commence
+[2022-07-20 10:56:37] [ ERROR] [JwtProvider:79] Malformed Jwt
+[2022-07-20 10:56:37] [ ERROR] [JwtEntryPoint:31] fail in commence
+[2022-07-20 10:56:40] [ ERROR] [JwtProvider:79] Malformed Jwt
+[2022-07-20 10:56:40] [ ERROR] [JwtEntryPoint:31] fail in commence
+[2022-07-20 10:56:50] [ ERROR] [JwtProvider:95] Fail Jwt signature
+[2022-07-20 10:56:50] [ ERROR] [JwtEntryPoint:31] fail in commence
+[2022-07-20 10:56:56] [ ERROR] [JwtProvider:87] Expired Jwt
+[2022-07-20 10:56:56] [ ERROR] [JwtEntryPoint:31] fail in commence
+[2022-07-20 10:57:26] [ ERROR] [JwtProvider:87] Expired Jwt
+[2022-07-20 10:57:26] [ ERROR] [JwtEntryPoint:31] fail in commence
+[2022-07-20 11:00:14] [ ERROR] [JwtProvider:87] Expired Jwt
+[2022-07-20 11:00:14] [ ERROR] [JwtEntryPoint:31] fail in commence
+[2022-07-20 11:00:16] [ ERROR] [JwtProvider:87] Expired Jwt
+[2022-07-20 11:00:16] [ ERROR] [JwtEntryPoint:31] fail in commence
+[2022-07-20 11:00:17] [ ERROR] [JwtProvider:87] Expired Jwt
+[2022-07-20 11:00:17] [ ERROR] [JwtEntryPoint:31] fail in commence
+[2022-07-20 11:00:27] [ ERROR] [JwtProvider:87] Expired Jwt
+[2022-07-20 11:00:27] [ ERROR] [JwtEntryPoint:31] fail in commence
+[2022-07-20 11:00:56] [ ERROR] [JwtProvider:87] Expired Jwt
+[2022-07-20 11:00:56] [ ERROR] [JwtEntryPoint:31] fail in commence
+[2022-07-20 11:01:21] [ ERROR] [JwtProvider:87] Expired Jwt
+[2022-07-20 11:01:21] [ ERROR] [JwtEntryPoint:31] fail in commence
+[2022-07-20 11:04:19] [ ERROR] [JwtProvider:79] Malformed Jwt
+[2022-07-20 11:04:21] [ ERROR] [JwtProvider:79] Malformed Jwt
+[2022-07-20 11:04:22] [ ERROR] [JwtProvider:79] Malformed Jwt
+[2022-07-20 11:04:34] [ ERROR] [JwtProvider:79] Malformed Jwt
+[2022-07-20 11:04:35] [ ERROR] [JwtProvider:79] Malformed Jwt
+[2022-07-20 11:04:38] [ ERROR] [JwtProvider:79] Malformed Jwt
+[2022-07-20 11:04:43] [ ERROR] [JwtProvider:87] Expired Jwt
+[2022-07-20 11:04:45] [ ERROR] [JwtProvider:87] Expired Jwt
+[2022-07-20 11:04:54] [ ERROR] [JwtProvider:87] Expired Jwt
+[2022-07-20 11:04:54] [ ERROR] [JwtEntryPoint:31] fail in commence
+[2022-07-20 11:08:03] [ ERROR] [JwtProvider:87] Expired Jwt
+[2022-07-20 11:08:03] [ ERROR] [JwtEntryPoint:31] fail in commence
+[2022-07-20 11:14:00] [ ERROR] [JwtProvider:79] Malformed Jwt
+[2022-07-20 11:14:00] [ ERROR] [JwtEntryPoint:31] fail in commence
+[2022-07-20 11:14:01] [ ERROR] [JwtProvider:79] Malformed Jwt
+[2022-07-20 11:14:01] [ ERROR] [JwtEntryPoint:31] fail in commence
+[2022-07-20 11:14:42] [ ERROR] [JwtProvider:79] Malformed Jwt
+[2022-07-20 11:14:42] [ ERROR] [JwtEntryPoint:31] fail in commence
+[2022-07-20 11:15:03] [ ERROR] [JwtProvider:79] Malformed Jwt
+[2022-07-20 11:15:03] [ ERROR] [JwtEntryPoint:31] fail in commence
+[2022-07-20 11:15:22] [ ERROR] [JwtProvider:79] Malformed Jwt
+[2022-07-20 11:15:22] [ ERROR] [JwtEntryPoint:31] fail in commence
+[2022-07-20 11:15:23] [ ERROR] [JwtProvider:79] Malformed Jwt
+[2022-07-20 11:15:23] [ ERROR] [JwtEntryPoint:31] fail in commence
+[2022-07-20 11:15:36] [ ERROR] [JwtProvider:79] Malformed Jwt
+[2022-07-20 11:15:36] [ ERROR] [JwtEntryPoint:31] fail in commence
+[2022-07-20 11:15:58] [ ERROR] [JwtProvider:79] Malformed Jwt
+[2022-07-20 11:15:58] [ ERROR] [JwtEntryPoint:31] fail in commence
+[2022-07-20 11:16:20] [ ERROR] [JwtProvider:79] Malformed Jwt
+[2022-07-20 11:16:20] [ ERROR] [JwtEntryPoint:31] fail in commence
+[2022-07-20 11:16:34] [ ERROR] [JwtProvider:79] Malformed Jwt
+[2022-07-20 11:16:34] [ ERROR] [JwtEntryPoint:31] fail in commence
+[2022-07-20 11:17:01] [ ERROR] [JwtProvider:79] Malformed Jwt
+[2022-07-20 11:17:01] [ ERROR] [JwtEntryPoint:31] fail in commence
+[2022-07-20 12:11:02] [ ERROR] [JwtFilter:44] Fail in doFilterInternal()
+[2022-07-20 12:11:02] [ ERROR] [JwtEntryPoint:31] fail in commence
+[2022-07-20 12:11:30] [ ERROR] [JwtFilter:44] Fail in doFilterInternal()
+[2022-07-20 12:11:30] [ ERROR] [JwtEntryPoint:31] fail in commence
+[2022-07-20 12:11:48] [ DEBUG] [JwtProvider:67] marcoss@marcos.com
+[2022-07-20 12:12:50] [ ERROR] [JwtFilter:44] Fail in doFilterInternal()
+[2022-07-20 12:12:50] [ ERROR] [JwtEntryPoint:31] fail in commence
+[2022-07-20 12:13:12] [ ERROR] [JwtFilter:44] Fail in doFilterInternal()
+[2022-07-20 12:13:12] [ ERROR] [JwtEntryPoint:31] fail in commence
+[2022-07-20 12:13:46] [ ERROR] [JwtFilter:44] Fail in doFilterInternal()Cannot mutate a JwtParser created from JwtParserBuilder.build(), the mutable methods in JwtParser will be removed before version 1.0
+[2022-07-20 12:13:46] [ ERROR] [JwtEntryPoint:31] fail in commence
+[2022-07-20 12:20:40] [ ERROR] [JwtProvider:89] Expired Jwt
+[2022-07-20 12:20:40] [ ERROR] [JwtEntryPoint:31] fail in commence
+[2022-07-20 12:21:33] [ DEBUG] [JwtProvider:66] marcoss@marcos.com
+[2022-07-20 12:22:33] [ ERROR] [JwtFilter:44] Fail in doFilterInternal()Illegal base64 character: '.'
+[2022-07-20 12:22:33] [ ERROR] [JwtEntryPoint:31] fail in commence
+[2022-07-20 12:22:59] [ ERROR] [JwtFilter:44] Fail in doFilterInternal()Illegal base64 character: '.'
+[2022-07-20 12:22:59] [ ERROR] [JwtEntryPoint:31] fail in commence
+[2022-07-20 12:23:44] [ ERROR] [JwtFilter:44] Fail in doFilterInternal()Illegal base64 character: '.'
+[2022-07-20 12:23:44] [ ERROR] [JwtEntryPoint:31] fail in commence
+[2022-07-20 12:23:57] [ ERROR] [JwtFilter:44] Fail in doFilterInternal()Illegal base64 character: '.'
+[2022-07-20 12:23:57] [ ERROR] [JwtEntryPoint:31] fail in commence
+[2022-07-20 12:25:26] [ ERROR] [JwtFilter:44] Fail in doFilterInternal()Illegal base64 character: '.'
+[2022-07-20 12:25:26] [ ERROR] [JwtEntryPoint:31] fail in commence
+[2022-07-20 12:25:50] [ DEBUG] [JwtProvider:48] [B@5eeaef57
+[2022-07-20 12:25:50] [ DEBUG] [JwtProvider:67] javax.crypto.spec.SecretKeySpec@fa77c112
+[2022-07-20 12:25:50] [ DEBUG] [JwtProvider:68] marcoss@marcos.com
+[2022-07-20 12:26:12] [ DEBUG] [JwtProvider:48] [B@3573bca0
+[2022-07-20 12:26:12] [ DEBUG] [JwtProvider:67] javax.crypto.spec.SecretKeySpec@fa77c112
+[2022-07-20 12:26:12] [ DEBUG] [JwtProvider:68] marcoss@marcos.com
+[2022-07-20 12:30:01] [ DEBUG] [JwtProvider:48] [B@28b147c6
+[2022-07-20 12:30:01] [ DEBUG] [JwtProvider:48] [B@98dea9a
+[2022-07-20 12:30:01] [ DEBUG] [JwtProvider:67] javax.crypto.spec.SecretKeySpec@fa77c112
+[2022-07-20 12:30:01] [ DEBUG] [JwtProvider:68] marcoss@marcos.com
+[2022-07-20 12:30:06] [ DEBUG] [JwtProvider:48] [B@541eecb9
+[2022-07-20 12:30:06] [ DEBUG] [JwtProvider:48] [B@6e017d59
+[2022-07-20 12:30:06] [ DEBUG] [JwtProvider:67] javax.crypto.spec.SecretKeySpec@fa77c112
+[2022-07-20 12:30:06] [ DEBUG] [JwtProvider:68] marcoss@marcos.com
+[2022-07-20 12:31:34] [ ERROR] [JwtProvider:77] Malformed Jwt
+[2022-07-20 12:31:34] [ ERROR] [JwtEntryPoint:31] fail in commence
