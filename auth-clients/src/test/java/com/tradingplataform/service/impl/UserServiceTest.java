@@ -2,11 +2,14 @@ package com.tradingplataform.service.impl;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import javax.persistence.PersistenceException;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -69,12 +72,13 @@ class UserServiceTest {
 	@Test
 	void testSave() {
 		when(userRepository.save(any(User.class))).thenReturn(user4);
-		assertNotNull(userService.save(new User()));
+		assertNotNull(userService.save(new User()));		
 	}
 
 	@Test
 	void testDelete() {
-		fail("Not yet implemented");
+		doThrow(new PersistenceException("Exception occured")).when(userRepository).deleteById(2);
+		assertDoesNotThrow(()->userService.delete(1));
 	}
 
 }

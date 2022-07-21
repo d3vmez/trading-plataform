@@ -10,7 +10,7 @@ public interface IUserService {
 	public List<User> findAll();
 	public Optional<User> findByEmail(String email);
 	public Optional<User> find(Integer id);
-	public void save(User user);
+	public User save(User user);
 	public void delete(Integer id);
 
 }

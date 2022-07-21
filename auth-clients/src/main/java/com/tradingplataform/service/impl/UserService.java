@@ -37,9 +37,9 @@ public class UserService implements IUserService{
 	}
 
 	@Override
-	public void save(User user) {
-		userRepository.save(user);
+	public User save(User user) {
 		log.info("User saved with id: " + user.getId());
+		return userRepository.save(user);	
 	}
 
 	@Override
