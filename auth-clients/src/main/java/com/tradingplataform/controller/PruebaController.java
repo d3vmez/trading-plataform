@@ -43,7 +43,7 @@ public class PruebaController {
 	@PostMapping("/createproduct/{userId}")
 	public ResponseEntity<Product> createProduct(@PathVariable("userId") int userId, @RequestBody Product product){
 	
-		Product productNew = userService.save(product, userId);
+		Product productNew = userService.saveProduct(product, userId);
 		return ResponseEntity.ok(productNew);
 	
 	}

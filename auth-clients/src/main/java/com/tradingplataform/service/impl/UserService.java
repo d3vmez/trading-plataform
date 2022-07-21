@@ -37,7 +37,7 @@ public class UserService implements IUserService{
 	@Autowired
 	private ProductFeignClient productFeignClient;
 	
-	public Product save(Product product, int userId) {
+	public Product saveProduct(Product product, int userId) {
 		// Pasar el id del usuario
 		product.setUserId(userId);
 		Product productNew = productFeignClient.save(product);
