@@ -7,8 +7,10 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.RestTemplate;
 
 import com.tradingplataform.models.User;
+import com.tradingplataform.models.resttemplates.Product;
 import com.tradingplataform.repository.UserRepository;
 import com.tradingplataform.service.IUserService;
 
@@ -17,6 +19,17 @@ import com.tradingplataform.service.IUserService;
 public class UserService implements IUserService{
 	
 	Logger log = Logger.getLogger(UserService.class);
+	
+	// Prueba
+	@Autowired
+	private RestTemplate restTemplate;
+	
+	public List<Product> findProducts(int userId){
+		
+		List<Product> products = restTemplate.getForObject("http://localhost:8081//product/byuser/" + userId, List.class);
+		return products;	
+	}
+	/////////////////////////////////////////////////////////////////
 	
 	@Autowired
 	private UserRepository userRepository;
