@@ -1,6 +1,7 @@
 package com.tradingplataform.controller;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,12 +43,25 @@ public class PruebaController {
 	// Usando Feign
 	@PostMapping("/createproduct/{userId}")
 	public ResponseEntity<Product> createProduct(@PathVariable("userId") int userId, @RequestBody Product product){
-	
+		
+		if(userService.find(userId).isEmpty()) {
+			return ResponseEntity.notFound().build();
+		}
+			
 		Product productNew = userService.saveProduct(product, userId);
 		return ResponseEntity.ok(productNew);
 	
 	}
+	
+	// Usando Feign
+	@GetMapping("/getProductsWithUser/{userId}")
+	public ResponseEntity<Map<String, Object>> getProductsWithUser(@PathVariable("userId") int userId){
+		
+		Map<String, Object> mapProducts = userService.getProductsWithUser(userId);
+		System.out.println(mapProducts.toString());
+		return ResponseEntity.ok(mapProducts);
+	
+	}
+	
 	/////////////////////////////////////////////////////////////////
-
-
 }

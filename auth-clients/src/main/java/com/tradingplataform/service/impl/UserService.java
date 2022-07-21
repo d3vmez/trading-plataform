@@ -1,6 +1,8 @@
 package com.tradingplataform.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.apache.log4j.Logger;
@@ -42,6 +44,27 @@ public class UserService implements IUserService{
 		product.setUserId(userId);
 		Product productNew = productFeignClient.save(product);
 		return productNew;
+	}
+	
+	public Map<String, Object> getProductsWithUser(int userId){
+		Map<String, Object> mapProducts = new HashMap<>();
+		if(this.find(userId).isEmpty()) {
+			mapProducts.put("message", "User doent exists");
+			return mapProducts;	
+		}
+		
+		User user = this.find(userId).get();
+		List<Product> products = productFeignClient.getProducts(userId);
+		
+		if(products == null) {
+			mapProducts.put("message", "User with id "+ userId +" doesnt have products ");
+			return mapProducts;	
+		}
+		
+		mapProducts.put("User", user);
+		mapProducts.put("Products", products);
+		
+		return mapProducts;
 	}
 	/////////////////////////////////////////////////////////////////
 	
