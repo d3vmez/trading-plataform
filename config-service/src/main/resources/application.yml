@@ -1,9 +1,13 @@
+server:
+  port: 8082
 spring:
-  application:
-    name: eureka-service
   cloud:
     config:
-      enabled: true
-      uri: http://localhost:8082
-   
-      
+      server:
+        git:
+          default-label: servidor/configuracion
+          uri: https://github.com/mg0mez/trading-plataform
+          search-paths: config-data
+  application:
+    name: config-service
+          
