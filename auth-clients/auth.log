@@ -99,3 +99,13 @@
 [2022-07-20 12:31:34] [ ERROR] [JwtEntryPoint:31] fail in commence
 [2022-07-21 12:45:27] [ ERROR] [JwtProvider:85] Expired Jwt
 [2022-07-21 12:45:27] [ ERROR] [JwtEntryPoint:31] fail in commence
+[2022-07-21 13:53:17] [ ERROR] [JwtProvider:85] Expired Jwt
+[2022-07-21 13:53:17] [ ERROR] [JwtEntryPoint:31] fail in commence
+[2022-07-21 13:57:26] [ ERROR] [JwtProvider:85] Expired Jwt
+[2022-07-21 13:57:26] [ ERROR] [JwtEntryPoint:31] fail in commence
+[2022-07-21 14:54:01] [ ERROR] [JwtProvider:85] Expired Jwt
+[2022-07-21 14:54:01] [ ERROR] [JwtEntryPoint:31] fail in commence
+[2022-07-22 08:54:56] [ ERROR] [JwtProvider:85] Expired Jwt
+[2022-07-22 08:54:56] [ ERROR] [JwtEntryPoint:31] fail in commence
+[2022-07-22 08:56:21] [ ERROR] [JwtProvider:93] Fail Jwt signature
+[2022-07-22 08:56:21] [ ERROR] [JwtEntryPoint:31] fail in commence
