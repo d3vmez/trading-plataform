@@ -29,7 +29,7 @@ public class UserService implements IUserService{
 	
 	public List<Product> findProducts(int userId){
 		
-		List<Product> products = restTemplate.getForObject("http://localhost:8081//product/byuser/" + userId, List.class);
+		List<Product> products = restTemplate.getForObject("http://product-service:8081/product/byuser/" + userId, List.class);
 		return products;	
 	}
 	/////////////////////////////////////////////////////////////////

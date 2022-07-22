@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.tradingplataform.models.resttemplates_feign.Product;
 
 
-@FeignClient(name = "product-service", url = "http://localhost:8081")
+@FeignClient(name = "product-service")
 public interface ProductFeignClient {
 	
 	// Crear producto

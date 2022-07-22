@@ -109,3 +109,5 @@
 [2022-07-22 08:54:56] [ ERROR] [JwtEntryPoint:31] fail in commence
 [2022-07-22 08:56:21] [ ERROR] [JwtProvider:93] Fail Jwt signature
 [2022-07-22 08:56:21] [ ERROR] [JwtEntryPoint:31] fail in commence
+[2022-07-22 15:14:14] [ ERROR] [JwtEntryPoint:31] fail in commence
+[2022-07-22 15:14:14] [ ERROR] [JwtEntryPoint:31] fail in commence
