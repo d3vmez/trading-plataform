@@ -121,3 +121,6 @@
 [2022-07-25 09:04:26] [ ERROR] [JwtEntryPoint:31] fail in commence
 [2022-07-25 09:48:49] [ ERROR] [JwtEntryPoint:31] fail in commence
 [2022-07-25 10:31:16] [ ERROR] [JwtEntryPoint:31] fail in commence
+[2022-07-25 11:42:40] [ ERROR] [JwtEntryPoint:31] fail in commence
+[2022-07-25 11:46:36] [ ERROR] [JwtEntryPoint:31] fail in commence
+[2022-07-25 13:11:42] [ INFO ] [UserService:91] User saved with id: 0
