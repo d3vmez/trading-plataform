@@ -119,3 +119,4 @@
 [2022-07-25 09:04:17] [ ERROR] [JwtEntryPoint:31] fail in commence
 [2022-07-25 09:04:26] [ ERROR] [JwtProvider:85] Expired Jwt
 [2022-07-25 09:04:26] [ ERROR] [JwtEntryPoint:31] fail in commence
+[2022-07-25 09:48:49] [ ERROR] [JwtEntryPoint:31] fail in commence
