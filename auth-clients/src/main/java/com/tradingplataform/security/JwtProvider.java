@@ -3,6 +3,9 @@ package com.tradingplataform.security;
 import java.security.Key;
 import java.util.Date;
 
+import javax.annotation.PostConstruct;
+import javax.crypto.SecretKey;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
@@ -36,15 +39,19 @@ public class JwtProvider {
 	@Value("${jwt.expiration}")
 	private int expiration_time;
 	
+	private SecretKey secretKey;
+	
 	/**
 	 * 
 	 * Método para convertir una String key a Java Key
 	 * 
 	 * @return Java Key instancia
 	 */
-	private Key getSigningKey(String secretKey) {
-		  byte[] keyBytes = Decoders.BASE64.decode(secretKey);
-		  return Keys.hmacShaKeyFor(keyBytes);
+	@PostConstruct
+	protected void init() {
+		
+		  byte[] keyBytes = Decoders.BASE64.decode(this.secret_key);
+		  this.secretKey = Keys.hmacShaKeyFor(keyBytes);
 		}
 	
 	public String createToken(Authentication authentication) {
@@ -53,7 +60,7 @@ public class JwtProvider {
 		String token = Jwts.builder().setSubject(securityUser.getUsername())
 						.setIssuedAt(new Date())
 						.setExpiration(new Date(System.currentTimeMillis() + expiration_time))
-						.signWith(getSigningKey(secret_key))
+						.signWith(secretKey)
 						.compact();
 						   
 		return token;
@@ -61,7 +68,7 @@ public class JwtProvider {
 	
 	public String getEmailFromToken(String token) {
 		
-		String email = Jwts.parserBuilder().setSigningKey(getSigningKey(secret_key)).build().parseClaimsJws(token).getBody().getSubject();
+		String email = Jwts.parserBuilder().setSigningKey(secretKey).build().parseClaimsJws(token).getBody().getSubject();
 		return email;
 	}
 	
@@ -69,7 +76,7 @@ public class JwtProvider {
 		
 		try {
 			
-			Jwts.parserBuilder().setSigningKey(getSigningKey(secret_key)).build().parseClaimsJws(token);
+			Jwts.parserBuilder().setSigningKey(secretKey).build().parseClaimsJws(token);
 			return true;
 			
 		}catch(MalformedJwtException e){
