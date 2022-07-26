@@ -26,7 +26,7 @@ class AuthUserServiceTest {
 	private UserRepository userRepository;
 	
 	@InjectMocks
-	private AuthUserService userService;
+	private UserService userService;
 	
 	List<User> listUser;
 	Optional<User> user3;
