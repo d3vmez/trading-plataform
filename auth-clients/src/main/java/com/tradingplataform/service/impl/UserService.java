@@ -5,11 +5,13 @@ import java.util.Optional;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.tradingplataform.models.User;
 import com.tradingplataform.repository.UserRepository;
 import com.tradingplataform.service.IUserService;
 
+@Service
 public class UserService implements IUserService{
 	
 	Logger log = Logger.getLogger(UserService.class);
