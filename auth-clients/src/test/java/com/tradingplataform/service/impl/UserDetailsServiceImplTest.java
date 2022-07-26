@@ -21,7 +21,7 @@ import com.tradingplataform.models.User;
 class UserDetailsServiceImplTest {
 	
 	@Mock
-	private UserService userService;
+	private AuthUserService userService;
 	
 	@InjectMocks
 	private UserDetailsServiceImpl userDetailsServiceImpl;

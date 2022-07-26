@@ -20,13 +20,13 @@ import org.mockito.MockitoAnnotations;
 import com.tradingplataform.models.User;
 import com.tradingplataform.repository.UserRepository;
 
-class UserServiceTest {
+class AuthUserServiceTest {
 	
 	@Mock
 	private UserRepository userRepository;
 	
 	@InjectMocks
-	private UserService userService;
+	private AuthUserService userService;
 	
 	List<User> listUser;
 	Optional<User> user3;

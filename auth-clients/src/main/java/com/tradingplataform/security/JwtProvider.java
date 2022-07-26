@@ -1,6 +1,5 @@
 package com.tradingplataform.security;
 
-import java.security.Key;
 import java.util.Date;
 
 import javax.annotation.PostConstruct;
@@ -30,17 +29,17 @@ import io.jsonwebtoken.security.SignatureException;
  */
 @Component
 public class JwtProvider {
-	
+
 	private final static Logger log = Logger.getLogger(JwtProvider.class);
-	
+
 	@Value("${jwt.secret}")
 	private String secret_key;
-	
+
 	@Value("${jwt.expiration}")
 	private int expiration_time;
-	
+
 	private SecretKey secretKey;
-	
+
 	/**
 	 * 
 	 * Método para convertir una String key a Java Key
@@ -49,59 +48,62 @@ public class JwtProvider {
 	 */
 	@PostConstruct
 	protected void init() {
-		
-		  byte[] keyBytes = Decoders.BASE64.decode(this.secret_key);
-		  this.secretKey = Keys.hmacShaKeyFor(keyBytes);
-		}
-	
+
+		byte[] keyBytes = Decoders.BASE64.decode(this.secret_key);
+		this.secretKey = Keys.hmacShaKeyFor(keyBytes);
+	}
+
 	public String createToken(Authentication authentication) {
-		
+
 		SecurityUser securityUser = (SecurityUser) authentication.getPrincipal();
-		String token = Jwts.builder().setSubject(securityUser.getUsername())
-						.setIssuedAt(new Date())
-						.setExpiration(new Date(System.currentTimeMillis() + expiration_time))
-						.signWith(secretKey)
-						.compact();
-						   
+		String token = Jwts.builder().setSubject(securityUser.getUsername()).setIssuedAt(new Date())
+				.setExpiration(new Date(System.currentTimeMillis() + expiration_time)).signWith(secretKey).compact();
+
 		return token;
 	}
-	
+
 	public String getEmailFromToken(String token) {
-		
-		String email = Jwts.parserBuilder().setSigningKey(secretKey).build().parseClaimsJws(token).getBody().getSubject();
-		return email;
-	}
-	
-	public boolean isValidateToken(String token) {
-		
+
 		try {
-			
+			String email = Jwts.parserBuilder().setSigningKey(secretKey).build().parseClaimsJws(token).getBody()
+					.getSubject();
+			return email;
+		} catch (Exception e) {
+			return "bad token";
+		}
+
+	}
+
+	public boolean isValidateToken(String token) {
+
+		try {
+
 			Jwts.parserBuilder().setSigningKey(secretKey).build().parseClaimsJws(token);
 			return true;
-			
-		}catch(MalformedJwtException e){
-			
+
+		} catch (MalformedJwtException e) {
+
 			log.error("Malformed Jwt");
-			
-		}catch(UnsupportedJwtException e){
-			
+
+		} catch (UnsupportedJwtException e) {
+
 			log.error("Unsupported Jwt");
-			
-		}catch(ExpiredJwtException e){
-			
+
+		} catch (ExpiredJwtException e) {
+
 			log.error("Expired Jwt");
-			
-		}catch(IllegalArgumentException e){
-			
+
+		} catch (IllegalArgumentException e) {
+
 			log.error("Empty Jwt");
-			
-		}catch(SignatureException e) {
-			
+
+		} catch (SignatureException e) {
+
 			log.error("Fail Jwt signature");
-			
+
 		}
-		
+
 		return false;
-	
+
 	}
 }

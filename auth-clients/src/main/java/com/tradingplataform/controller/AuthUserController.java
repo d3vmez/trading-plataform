@@ -13,71 +13,70 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tradingplataform.models.User;
 import com.tradingplataform.models.dto.LoginDto;
 import com.tradingplataform.models.dto.Message;
 import com.tradingplataform.models.dto.RegisterDto;
-import com.tradingplataform.models.dto.ResponseDto;
+import com.tradingplataform.models.dto.ResponseTokenDto;
 import com.tradingplataform.security.JwtProvider;
-import com.tradingplataform.service.impl.UserService;
+import com.tradingplataform.service.impl.AuthUserService;
 
 @RestController
 @RequestMapping("/auth")
 @CrossOrigin
-public class UserController {
+public class AuthUserController {
 	
 	@Autowired
-	private UserService userService;
-	
-	@Autowired
-	private BCryptPasswordEncoder passwordEncoder;
-	
-	@Autowired
-	private AuthenticationManager authenticationManager;
-	
-	@Autowired
-	private JwtProvider jwtProvider;
-	
-	@PostMapping("/register")
-	public ResponseEntity<?> registerUser(@Valid @RequestBody RegisterDto registerUser, BindingResult bindingResult){
-		if(bindingResult.hasErrors()) {
-			return new ResponseEntity(new Message("Wrong fields!!"), HttpStatus.BAD_REQUEST);
-		}
-		
-		if(userService.findByEmail(registerUser.getEmail()).isPresent()) {
-			return new ResponseEntity(new Message("Emails exists!!"), HttpStatus.BAD_REQUEST);
-		}
-		
-		User user = new User(registerUser.getEmail(), passwordEncoder.encode(registerUser.getPassword()));
-		
-		// TODO asignar roles
-		
-		userService.save(user);
-		return new ResponseEntity(new Message("User create!!"), HttpStatus.CREATED);
-		
-	}
+	private AuthUserService authUserService;
 	
 	@PostMapping("/login")
-	public ResponseEntity<ResponseDto> login(@Valid @RequestBody LoginDto loginUser, BindingResult bindingResult){
+	public ResponseEntity<?> login(@Valid @RequestBody LoginDto loginUserDto, BindingResult bindingResult){
 		if(bindingResult.hasErrors()) {
 			return new ResponseEntity(new Message("Wrong fields!!"), HttpStatus.BAD_REQUEST);
 		}
 		
-		Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginUser.getEmail(), loginUser.getPassword()));
-		SecurityContextHolder.getContext().setAuthentication(authentication);
+		ResponseTokenDto responseTokenDto = authUserService.login(loginUserDto);
+		if(responseTokenDto == null) {
+			return new ResponseEntity(new Message("Wrong fields!!"), HttpStatus.BAD_REQUEST);
+		}
 		
-		String token = jwtProvider.createToken(authentication);
-		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-		ResponseDto responseDto = new ResponseDto(token, userDetails.getUsername());
-		return new ResponseEntity(responseDto, HttpStatus.OK);
+		return new ResponseEntity(responseTokenDto, HttpStatus.OK);
+			
 	}
 	
 	
+	@GetMapping("/validate")
+	public ResponseEntity<?> login(@Valid @RequestParam String token){
+		
+		ResponseTokenDto responseTokenDto = authUserService.validateToken(token);
+		if(responseTokenDto == null) {
+			return new ResponseEntity(new Message("Wrong fields!!"), HttpStatus.BAD_REQUEST);
+		}
+		
+		return new ResponseEntity(responseTokenDto, HttpStatus.OK);
+			
+	}
 	
-	
+	@PostMapping("/register")
+	public ResponseEntity<?> register(@Valid @RequestBody RegisterDto registerUserDto, BindingResult bindingResult){
+		if(bindingResult.hasErrors()) {
+			return new ResponseEntity(new Message("Wrong fields!!"), HttpStatus.BAD_REQUEST);
+		}
+		
+		User user = authUserService.register(registerUserDto);
+		
+		if(user == null) {
+			return new ResponseEntity(new Message("El usuario ya existe"), HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity(user, HttpStatus.CREATED);
+		
+	}
+		
 }

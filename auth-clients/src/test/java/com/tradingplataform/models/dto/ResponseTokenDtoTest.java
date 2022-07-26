@@ -5,25 +5,25 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class ResponseDtoTest {
+class ResponseTokenDtoTest {
 
-	ResponseDto responseDto;
+	ResponseTokenDto responseDto;
 
 	@BeforeEach
 	void setUp() throws Exception {
-		responseDto = new ResponseDto();
+		responseDto = new ResponseTokenDto();
 	}
 
 	@Test
 	void testResponseDto() {
-		ResponseDto responseDto = new ResponseDto();
+		ResponseTokenDto responseDto = new ResponseTokenDto();
 		assertAll("ResponseDto()", () -> assertEquals(null, responseDto.getToken()),
 				() -> assertEquals("Bearer", responseDto.getBearer()));
 	}
 
 	@Test
 	void testResponseDtoStringString() {
-		ResponseDto responseDto = new ResponseDto("token", "userName");
+		ResponseTokenDto responseDto = new ResponseTokenDto("token", "userName");
 
 		assertAll("ResponseDto()", () -> assertEquals("token", responseDto.getToken()),
 				() -> assertEquals("Bearer", responseDto.getBearer()),

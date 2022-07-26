@@ -1,16 +1,16 @@
 package com.tradingplataform.models.dto;
 
-public class ResponseDto {
+public class ResponseTokenDto {
 	
 	private String token;
 	private String bearer = "Bearer";
 	private String userName;
 	
-	public ResponseDto() {
+	public ResponseTokenDto() {
 		
 	}
 
-	public ResponseDto(String token,String userName) {
+	public ResponseTokenDto(String token,String userName) {
 		super();
 		this.token = token;
 		this.userName = userName;
