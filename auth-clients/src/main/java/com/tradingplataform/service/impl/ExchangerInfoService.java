@@ -45,11 +45,15 @@ public class ExchangerInfoService {
 	
 	private String getToken(String token) {
 		
-		if(token != null && token.startsWith("Bearer")) {
+		if(token == null) {
+			return null;
+		}
+		
+		if(token.startsWith("Bearer")) {
 			return token.replace("Bearer", "");
 		}
 		
-		return null;
+		return token;
 		
 	}
 

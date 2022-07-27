@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.tradingplataform.prueba.feignclient.UserFeignClient;
 import com.tradingplataform.prueba.model.Product;
 import com.tradingplataform.prueba.repository.ProductRepository;
 import com.tradingplataform.prueba.service.IProductService;
@@ -15,6 +16,9 @@ public class ProductService implements IProductService{
 	
 	@Autowired
 	private ProductRepository productRepository;
+	
+	@Autowired
+	private UserFeignClient userFeignClient;
 
 	@Override
 	public List<Product> findAll() {
@@ -27,7 +31,12 @@ public class ProductService implements IProductService{
 	}
 
 	@Override
-	public Product save(Product product) {
+	public Product save(Product product, String token) {
+		
+		Integer userId = userFeignClient.getId(token);
+		if(userId != null) {
+			product.setUserId(userId);
+		}
 		return productRepository.save(product);
 	}
 

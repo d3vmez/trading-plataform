@@ -1,6 +1,7 @@
 package com.tradingplataform.prueba.controller;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -39,8 +41,13 @@ public class ProductController {
 	}
 
 	@PostMapping()
-	public ResponseEntity<Product> save(@RequestBody Product product) {
-		Product productNew = productService.save(product);
+	public ResponseEntity<Product> save(@RequestBody Product product, @RequestHeader Map<String, String> header) {
+		
+		//Obtener el token de la cabecera de la peticion
+		String token = header.get("authorization");
+		
+		// Pasar el token al metodo save para que pueda obtener el id del usuario
+		Product productNew = productService.save(product,token);
 		return ResponseEntity.ok(productNew);
 	}
 

@@ -14,6 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +28,7 @@ import com.tradingplataform.models.dto.RegisterDto;
 import com.tradingplataform.models.dto.ResponseTokenDto;
 import com.tradingplataform.security.JwtProvider;
 import com.tradingplataform.service.impl.AuthUserService;
+import com.tradingplataform.service.impl.ExchangerInfoService;
 
 @RestController
 @RequestMapping("/auth")
