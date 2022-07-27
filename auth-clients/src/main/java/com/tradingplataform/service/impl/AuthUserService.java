@@ -71,13 +71,18 @@ public class AuthUserService{
 			return null;
 		}
 		
+		try {
 		Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginUserDto.getEmail(), loginUserDto.getPassword()));
 		SecurityContextHolder.getContext().setAuthentication(authentication);
-		
 		String token = jwtProvider.createToken(authentication);
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 		
 		return new ResponseTokenDto(token,userDetails.getUsername());
+		}catch (Exception e) {
+			return null;
+		}
+		
+
 				
 	}
 	

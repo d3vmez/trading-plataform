@@ -44,7 +44,7 @@ public class AuthUserController {
 		
 		ResponseTokenDto responseTokenDto = authUserService.login(loginUserDto);
 		if(responseTokenDto == null) {
-			return new ResponseEntity(new Message("Wrong fields!!"), HttpStatus.BAD_REQUEST);
+			return new ResponseEntity(new Message("Invalid password or email!"), HttpStatus.FORBIDDEN);
 		}
 		
 		return new ResponseEntity(responseTokenDto, HttpStatus.OK);
