@@ -20,7 +20,7 @@ spring:
         - id: auth-clients
           uri: lb://auth-clients
           predicates:
-            - Path=/auth/**, /prueba/**
+            - Path=/auth/**, /exchange/**
         - id: product-service
           uri: lb://product-service
           predicates:
