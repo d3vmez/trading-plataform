@@ -61,7 +61,7 @@ public class AuthUserService{
 		
 		User user = new User(registerUserDto.getEmail(), passwordEncoder.encode(registerUserDto.getPassword()));
 		
-		return user;
+		return userService.save(user);
 		
 	}
 	
