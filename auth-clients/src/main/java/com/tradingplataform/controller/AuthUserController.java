@@ -52,7 +52,7 @@ public class AuthUserController {
 	}
 	
 	
-	@GetMapping("/validate")
+	@PostMapping("/validate")
 	public ResponseEntity<?> login(@Valid @RequestParam String token){
 		
 		ResponseTokenDto responseTokenDto = authUserService.validateToken(token);
