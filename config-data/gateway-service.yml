@@ -17,8 +17,8 @@ spring:
         locator:
           enabled: true
       routes:
-        - id: auth-clients
-          uri: lb://auth-clients
+        - id: auth-service
+          uri: lb://auth-service
           predicates:
             - Path=/auth/**, /exchange/**
         - id: product-service

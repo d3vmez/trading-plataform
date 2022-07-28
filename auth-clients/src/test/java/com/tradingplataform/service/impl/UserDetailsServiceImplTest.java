@@ -15,7 +15,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.test.util.ReflectionTestUtils;
 
-import com.tradingplataform.models.User;
+import com.tradingplataform.authservice.models.User;
+import com.tradingplataform.authservice.service.impl.UserDetailsServiceImpl;
+import com.tradingplataform.authservice.service.impl.UserService;
 
 
 class UserDetailsServiceImplTest {

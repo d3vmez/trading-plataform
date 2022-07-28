@@ -17,8 +17,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import com.tradingplataform.models.User;
-import com.tradingplataform.repository.UserRepository;
+import com.tradingplataform.authservice.models.User;
+import com.tradingplataform.authservice.repository.UserRepository;
+import com.tradingplataform.authservice.service.impl.UserService;
 
 class AuthUserServiceTest {
 	

@@ -12,6 +12,8 @@ import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 
+import com.tradingplataform.authservice.security.JwtEntryPoint;
+
 class JwtEntryPointTest {
 	
 	JwtEntryPoint jwtEntryPoint;
