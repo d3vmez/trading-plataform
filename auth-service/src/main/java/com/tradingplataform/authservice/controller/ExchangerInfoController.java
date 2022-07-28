@@ -1,5 +1,7 @@
 package com.tradingplataform.authservice.controller;
 
+import java.math.BigDecimal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +33,15 @@ public class ExchangerInfoController {
 		
 		return ResponseEntity.ok(id);
 		
+	}
+	
+	@GetMapping("/hasbalance/{balance}")
+	public ResponseEntity<Boolean> hasBalance(@PathVariable("balance") BigDecimal balance){
+		
+		if(balance==null) {
+			return ResponseEntity.noContent().build();
+		}
+		return ResponseEntity.ok(null);
 	}
 
 }
