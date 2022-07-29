@@ -1,6 +1,7 @@
 package com.tradingplataform.transactionservice.service.impl;
 
 import java.math.BigDecimal;
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -65,16 +66,39 @@ public class TransactionServiceImpl implements ITransactionService{
 		//Cambio de propietario
 		product.setUserId(buyer.getId());
 		
-		//Resta de saldo al comprador
+		// Precio transaccion
 		BigDecimal totalPrice = BigDecimal.valueOf(cuantity).multiply(price);
-		buyer.setBalance(buyer.getBalance().subtract(totalPrice));
+		
+		//Resta de saldo al comprador
+		BigDecimal updatedBalanceBuyer = buyer.getBalance().subtract(totalPrice);
 		
 		//Suma de saldo al vendedor
-		seller.setBalance(seller.getBalance().add(totalPrice));
+		BigDecimal updatedBalanceSeller = 	seller.getBalance().add(totalPrice);
 		
 		//Enviar usuarios actualizados
+		userFeignClient.updateUserBalance(updatedBalanceBuyer, buyer.getId());
 		
-		return new Transaction();
+		//Enviar usuarios actualizados
+		userFeignClient.updateUserBalance(updatedBalanceSeller, seller.getId());
+		
+		Transaction transaction = new Transaction();
+		transaction.setCuantity(cuantity);
+		transaction.setPrice(product.getPrice());
+		
+		//Convertir util.Date a sql.Date
+		//Añadir fecha al pedido
+		java.util.Date fecha = new java.util.Date();
+		java.sql.Date fechaSQl = new Date(fecha.getTime());
+		
+		transaction.setDate(fechaSQl);
+		transaction.setIdBuyer(buyer.getId());
+		transaction.setIdSeller(seller.getId());
+		transaction.setIdProduct(product.getId());
+
+		this.save(transaction);
+		
+		return transaction;
+
 	}
 
 	private boolean hasBalance(BigDecimal balance, String token) {
