@@ -126,3 +126,6 @@
 [2022-07-25 13:11:42] [ INFO ] [UserService:91] User saved with id: 0
 [2022-07-25 13:25:53] [ INFO ] [UserService:91] User saved with id: 0
 [2022-07-25 14:00:10] [ INFO ] [UserService:91] User saved with id: 0
+[2022-07-29 09:55:41] [ ERROR] [JwtProvider:98] Empty Jwt
+[2022-07-29 10:09:51] [ ERROR] [JwtProvider:98] Empty Jwt
+[2022-07-29 10:11:03] [ ERROR] [JwtProvider:98] Empty Jwt

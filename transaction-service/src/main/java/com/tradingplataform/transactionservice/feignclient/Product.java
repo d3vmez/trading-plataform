@@ -1,4 +1,4 @@
-package com.tradingplataform.productservice.model;
+package com.tradingplataform.transactionservice.feignclient;
 
 import java.math.BigDecimal;
 

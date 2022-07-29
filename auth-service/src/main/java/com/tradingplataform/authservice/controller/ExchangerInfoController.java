@@ -1,6 +1,7 @@
 package com.tradingplataform.authservice.controller;
 
 import java.math.BigDecimal;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -35,13 +37,18 @@ public class ExchangerInfoController {
 		
 	}
 	
-	@GetMapping("/hasbalance/{balance}")
-	public ResponseEntity<Boolean> hasBalance(@PathVariable("balance") BigDecimal balance){
+	@GetMapping("/hasbalance/{balance}/{token}")
+	public ResponseEntity<Boolean> hasBalance(@PathVariable("balance") BigDecimal balance, @PathVariable("token") String token){
 		
 		if(balance==null) {
 			return ResponseEntity.noContent().build();
 		}
-		return ResponseEntity.ok(null);
+		
+		if(exchangerInfoService.userHasBalance(balance, token)) {
+			return ResponseEntity.ok(true);
+		}
+		
+		return ResponseEntity.ok(false);
 	}
 
 }

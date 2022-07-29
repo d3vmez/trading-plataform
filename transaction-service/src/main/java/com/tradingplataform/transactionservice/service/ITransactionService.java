@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.tradingplataform.transactionservice.model.Transaction;
+import com.tradingplataform.transactionservice.model.dto.TransactionDTO;
 
 public interface ITransactionService {
 	
@@ -15,6 +16,6 @@ public interface ITransactionService {
 	
 	public void delete(int id);
 	
-	public Transaction buy();
+	public Transaction buy(TransactionDTO dto);
 
 }

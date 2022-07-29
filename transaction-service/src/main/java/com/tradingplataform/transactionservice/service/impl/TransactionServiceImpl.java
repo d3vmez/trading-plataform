@@ -1,12 +1,18 @@
 package com.tradingplataform.transactionservice.service.impl;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.tradingplataform.transactionservice.feignclient.Product;
+import com.tradingplataform.transactionservice.feignclient.ProductFeign;
+import com.tradingplataform.transactionservice.feignclient.User;
+import com.tradingplataform.transactionservice.feignclient.UserFeignClient;
 import com.tradingplataform.transactionservice.model.Transaction;
+import com.tradingplataform.transactionservice.model.dto.TransactionDTO;
 import com.tradingplataform.transactionservice.repository.TransactionRespository;
 import com.tradingplataform.transactionservice.service.ITransactionService;
 
@@ -15,6 +21,12 @@ public class TransactionServiceImpl implements ITransactionService{
 
 	@Autowired
 	TransactionRespository transactionRespository;
+	
+	@Autowired
+	private UserFeignClient userFeignClient;
+	
+	@Autowired
+	private ProductFeign productFeign;
 	
 	@Override
 	public Optional<Transaction> findById(int id) {
@@ -37,11 +49,40 @@ public class TransactionServiceImpl implements ITransactionService{
 	}
 
 	@Override
-	public Transaction buy() {
-		return null;
+	public Transaction buy(TransactionDTO dto) {
+		
+		//Obtener producto
+		Product product = productFeign.getProduct(dto.getIdProduct());
+		
+		//Obtener precio y cantidad
+		BigDecimal price = product.getPrice();
+		int cuantity = dto.getCuantity();
+		
+		//Obtener comprador y vendedor
+		User buyer = userFeignClient.getUser(dto.getIdBuyer());
+		User seller = userFeignClient.getUser(dto.getIdSeller());
+		
+		//Cambio de propietario
+		product.setUserId(buyer.getId());
+		
+		//Resta de saldo al comprador
+		BigDecimal totalPrice = BigDecimal.valueOf(cuantity).multiply(price);
+		buyer.setBalance(buyer.getBalance().subtract(totalPrice));
+		
+		//Suma de saldo al vendedor
+		seller.setBalance(seller.getBalance().add(totalPrice));
+		
+		//Enviar usuarios actualizados
+		
+		return new Transaction();
 	}
 
-	private boolean hasBalance() {
-		return true;
+	private boolean hasBalance(BigDecimal balance, String token) {
+		
+		if(userFeignClient.hasBalance(balance, token)) {
+			return true;
+		}
+		
+		return false;
 	}
 }
