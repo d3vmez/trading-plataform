@@ -86,7 +86,7 @@ public class ExchangerInfoController {
 		return ResponseEntity.ok(tempUser);
 	}
 	
-	@GetMapping("/user/{userID}")
+	@GetMapping("/user/{userId}")
 	public ResponseEntity<User> getUser(@PathVariable("userId") int userId){
 		Optional<User> user = userService.find(userId);
 		

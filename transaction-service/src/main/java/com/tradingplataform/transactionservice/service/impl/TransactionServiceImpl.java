@@ -67,12 +67,10 @@ public class TransactionServiceImpl implements ITransactionService{
 		//Obtener comprador y vendedor
 		User buyer;
 		User seller;
-		try {
+	
 			buyer = userFeignClient.getUser(dto.getIdBuyer());
 			seller = userFeignClient.getUser(dto.getIdSeller());
-		} catch (Exception e) {
-			return null;
-		}
+
 		
 		//Cambio de propietario
 		product.setUserId(buyer.getId());

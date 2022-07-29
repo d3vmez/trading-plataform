@@ -12,15 +12,15 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@FeignClient(name = "transaction-service")
+@FeignClient(name = "auth-service")
 public interface UserFeignClient {
 
 	@RequestMapping(method = RequestMethod.GET,value = "/exchange/hasbalance/{balance}/{token}")
 	public Boolean hasBalance(@PathVariable("balance") BigDecimal balance, @PathVariable("token") String token);
 	
-	@RequestMapping(method = RequestMethod.POST ,value ="/exchange/user/{userId}")
-	public User getUser(@PathVariable("id") int id);
+	@RequestMapping(method = RequestMethod.GET ,value ="/exchange/user/{userId}")
+	public User getUser(@PathVariable("userId") int id);
 	
-	@RequestMapping(method = RequestMethod.POST ,value ="exhange//updateUser/{userId}/{newBalance}")
-	User updateUserBalance(@PathVariable("newBlance") BigDecimal newBalance, @PathVariable("userId") int userId);
+	@RequestMapping(method = RequestMethod.POST ,value ="/exhange/updateUser/{userId}/{newBalance}")
+	User updateUserBalance(@PathVariable("newBalance") BigDecimal newBalance, @PathVariable("userId") int userId);
 }
