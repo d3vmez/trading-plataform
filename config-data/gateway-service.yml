@@ -27,3 +27,10 @@ spring:
             - Path=/product/**
           filters:
             - AuthFilter
+        - id: transaction-service
+          uri: lb://transaction-service
+          predicates:
+            - Path=/transaction/**
+          filters:
+            - AuthFilter
+        

@@ -53,15 +53,26 @@ public class TransactionServiceImpl implements ITransactionService{
 	public Transaction buy(TransactionDTO dto) {
 		
 		//Obtener producto
-		Product product = productFeign.getProduct(dto.getIdProduct());
+		Product product;
+		try {
+			product = productFeign.getProduct(dto.getIdProduct());
+		} catch (Exception e) {
+			return null;
+		}
 		
 		//Obtener precio y cantidad
 		BigDecimal price = product.getPrice();
 		int cuantity = dto.getCuantity();
 		
 		//Obtener comprador y vendedor
-		User buyer = userFeignClient.getUser(dto.getIdBuyer());
-		User seller = userFeignClient.getUser(dto.getIdSeller());
+		User buyer;
+		User seller;
+		try {
+			buyer = userFeignClient.getUser(dto.getIdBuyer());
+			seller = userFeignClient.getUser(dto.getIdSeller());
+		} catch (Exception e) {
+			return null;
+		}
 		
 		//Cambio de propietario
 		product.setUserId(buyer.getId());
@@ -75,11 +86,15 @@ public class TransactionServiceImpl implements ITransactionService{
 		//Suma de saldo al vendedor
 		BigDecimal updatedBalanceSeller = 	seller.getBalance().add(totalPrice);
 		
-		//Enviar usuarios actualizados
-		userFeignClient.updateUserBalance(updatedBalanceBuyer, buyer.getId());
-		
-		//Enviar usuarios actualizados
-		userFeignClient.updateUserBalance(updatedBalanceSeller, seller.getId());
+		try {
+			//Enviar usuarios actualizados
+			userFeignClient.updateUserBalance(updatedBalanceBuyer, buyer.getId());
+			
+			//Enviar usuarios actualizados
+			userFeignClient.updateUserBalance(updatedBalanceSeller, seller.getId());
+		} catch (Exception e) {
+			return null;
+		}
 		
 		Transaction transaction = new Transaction();
 		transaction.setCuantity(cuantity);
