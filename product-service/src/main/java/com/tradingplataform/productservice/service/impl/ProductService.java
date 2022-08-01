@@ -50,4 +50,9 @@ public class ProductService implements IProductService{
 		return productRepository.findByUserId(userID);
 	}
 
+	@Override
+	public Product update(Product product) {
+		return productRepository.save(product);
+	}
+
 }
