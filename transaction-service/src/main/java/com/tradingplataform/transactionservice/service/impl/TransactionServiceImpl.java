@@ -181,7 +181,7 @@ public class TransactionServiceImpl implements ITransactionService {
 	private boolean sendMailNotification(String email) {
 		
 		NotificationDTO notificationDTO = new NotificationDTO(email, "Completed transaction", "Your buy order is terminated");
-		boolean mail = notificationFeign.sendEmail(null);
+		boolean mail = notificationFeign.sendEmail(notificationDTO);
 		
 		if(mail) {
 			return true;

@@ -30,7 +30,7 @@ public class MailSenderService {
 			
 		} catch (MailException e) {
 			
-			log.error(e.getMessage());
+			System.out.println(e.getMessage().toString());
 			return false;
 			
 		}
