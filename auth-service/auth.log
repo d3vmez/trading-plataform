@@ -150,3 +150,19 @@
 [2022-08-01 09:05:39] [ INFO ] [ExchangerInfoController:84] Updated balance of user with: 1
 [2022-08-01 09:05:39] [ INFO ] [UserService:39] User saved with id: 3
 [2022-08-01 09:05:39] [ INFO ] [ExchangerInfoController:84] Updated balance of user with: 3
+[2022-08-01 10:06:59] [ INFO ] [UserService:39] User saved with id: 2
+[2022-08-01 10:06:59] [ INFO ] [ExchangerInfoController:84] Updated balance of user with: 2
+[2022-08-01 10:06:59] [ INFO ] [UserService:39] User saved with id: 1
+[2022-08-01 10:06:59] [ INFO ] [ExchangerInfoController:84] Updated balance of user with: 1
+[2022-08-01 10:08:03] [ INFO ] [UserService:39] User saved with id: 2
+[2022-08-01 10:08:03] [ INFO ] [ExchangerInfoController:84] Updated balance of user with: 2
+[2022-08-01 10:08:03] [ INFO ] [UserService:39] User saved with id: 1
+[2022-08-01 10:08:03] [ INFO ] [ExchangerInfoController:84] Updated balance of user with: 1
+[2022-08-01 10:34:18] [ INFO ] [UserService:39] User saved with id: 2
+[2022-08-01 10:34:18] [ INFO ] [ExchangerInfoController:84] Updated balance of user with: 2
+[2022-08-01 10:34:18] [ INFO ] [UserService:39] User saved with id: 1
+[2022-08-01 10:34:18] [ INFO ] [ExchangerInfoController:84] Updated balance of user with: 1
+[2022-08-01 10:34:43] [ INFO ] [UserService:39] User saved with id: 2
+[2022-08-01 10:34:43] [ INFO ] [ExchangerInfoController:84] Updated balance of user with: 2
+[2022-08-01 10:34:43] [ INFO ] [UserService:39] User saved with id: 1
+[2022-08-01 10:34:43] [ INFO ] [ExchangerInfoController:84] Updated balance of user with: 1
