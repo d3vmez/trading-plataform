@@ -67,6 +67,13 @@ public class TransactionServiceImpl implements ITransactionService {
 		// Obtener la cantidad que el comprador ha introducido
 		int cuantity = dto.getCuantity();
 		
+		// Obtener si el producto tiene la cantidad necesaria;
+		boolean hasCuantity = productFeign.productHasCuantity(product.getId(), cuantity);
+		
+		if(!hasCuantity) {
+			return null;
+		}
+		
 		// Comprobar si el comprador tiene balance para realizar la transacción
 		if(!this.hasBalance(price, token)) {
 			return null;
@@ -137,6 +144,13 @@ public class TransactionServiceImpl implements ITransactionService {
 			User buyerUpdated = userFeignClient.updateUserBalance(updatedBalanceBuyer, idBuyer);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		
+		try {
+			Product productUpdated = productFeign.updateProduct(product.getId(), cuantity);
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}

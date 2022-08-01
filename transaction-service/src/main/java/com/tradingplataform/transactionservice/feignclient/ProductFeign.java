@@ -10,4 +10,10 @@ public interface ProductFeign {
 
 	@RequestMapping(method = RequestMethod.GET,value = "/exchangeproduct/{id}")
 	public Product getProduct(@PathVariable("id") int id);
+	
+	@RequestMapping(method = RequestMethod.GET,value = "/exchangeproduct/hascuantity/{idProduct}/{cuantity}")
+	public boolean productHasCuantity(@PathVariable("idProduct") int idProduct, @PathVariable("cuantity") int cuantity);
+	
+	@RequestMapping(method = RequestMethod.POST,value = "/exchangeproduct/updateCuantity/{idProducto}/{cuantity}")
+	public Product updateProduct(@PathVariable("idProducto") int idProduct, @PathVariable("cuantity") int cuantity);
 }
