@@ -16,6 +16,6 @@ public interface ITransactionService {
 	
 	public void delete(int id);
 	
-	public Transaction buy(TransactionDTO dto);
+	public Transaction buy(TransactionDTO dto, String token);
 
 }

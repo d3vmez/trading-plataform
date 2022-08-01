@@ -13,15 +13,10 @@ import lombok.NoArgsConstructor;
 public class TransactionDTO {
 	
 	@NotBlank
-	private int idBuyer;
-	@NotBlank
 	private int idSeller;
 	@NotBlank
 	private int idProduct;
 	@NotBlank
 	private int cuantity;
-	@NotBlank
-	private BigDecimal price;
-	@NotBlank
-	private Date date;
+
 }

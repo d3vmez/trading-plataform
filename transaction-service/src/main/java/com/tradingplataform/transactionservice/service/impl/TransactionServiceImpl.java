@@ -18,17 +18,17 @@ import com.tradingplataform.transactionservice.repository.TransactionRespository
 import com.tradingplataform.transactionservice.service.ITransactionService;
 
 @Service
-public class TransactionServiceImpl implements ITransactionService{
+public class TransactionServiceImpl implements ITransactionService {
 
 	@Autowired
 	TransactionRespository transactionRespository;
-	
+
 	@Autowired
 	private UserFeignClient userFeignClient;
-	
+
 	@Autowired
 	private ProductFeign productFeign;
-	
+
 	@Override
 	public Optional<Transaction> findById(int id) {
 		return transactionRespository.findById(id);
@@ -50,8 +50,9 @@ public class TransactionServiceImpl implements ITransactionService{
 	}
 
 	@Override
-	public Transaction buy(TransactionDTO dto) {
+	public Transaction buy(TransactionDTO dto, String token) {
 		
+
 		//Obtener producto
 		Product product;
 		try {
@@ -60,16 +61,40 @@ public class TransactionServiceImpl implements ITransactionService{
 			return null;
 		}
 		
-		//Obtener precio y cantidad
+		//Obtener precio del producto
 		BigDecimal price = product.getPrice();
+		
+		// Obtener la cantidad que el comprador ha introducido
 		int cuantity = dto.getCuantity();
+		
+		// Comprobar si el comprador tiene balance para realizar la transacción
+		if(!this.hasBalance(price, token)) {
+			return null;
+		}
 		
 		//Obtener comprador y vendedor
 		User buyer;
 		User seller;
 	
-			buyer = userFeignClient.getUser(dto.getIdBuyer());
+		int idBuyer;
+		try {
+			idBuyer = userFeignClient.getId(token);
+			buyer = userFeignClient.getUser(idBuyer);
+		} catch (Exception e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+			return null;
+		}
+		
+		try {
 			seller = userFeignClient.getUser(dto.getIdSeller());
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		
+		// TODO Comprabar que el comprador tiene saldo suficiente
+		// TODO Comprobar que el producto tiene cantidad suficiente
 
 		
 		//Cambio de propietario
@@ -79,21 +104,11 @@ public class TransactionServiceImpl implements ITransactionService{
 		BigDecimal totalPrice = BigDecimal.valueOf(cuantity).multiply(price);
 		
 		//Resta de saldo al comprador
-		BigDecimal updatedBalanceBuyer = buyer.getBalance().subtract(totalPrice);
-		
+		BigDecimal updatedBalanceBuyer = updatedBalanceBuyer = buyer.getBalance().subtract(totalPrice);
+
 		//Suma de saldo al vendedor
 		BigDecimal updatedBalanceSeller = 	seller.getBalance().add(totalPrice);
-		
-		try {
-			//Enviar usuarios actualizados
-			userFeignClient.updateUserBalance(updatedBalanceBuyer, buyer.getId());
-			
-			//Enviar usuarios actualizados
-			userFeignClient.updateUserBalance(updatedBalanceSeller, seller.getId());
-		} catch (Exception e) {
-			return null;
-		}
-		
+
 		Transaction transaction = new Transaction();
 		transaction.setCuantity(cuantity);
 		transaction.setPrice(product.getPrice());
@@ -110,16 +125,32 @@ public class TransactionServiceImpl implements ITransactionService{
 
 		this.save(transaction);
 		
+		// Actualizar balances del comprador y del vendedor
+		try {
+			User sellerUpdated = userFeignClient.updateUserBalance(updatedBalanceSeller, seller.getId());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		try {
+			User buyerUpdated = userFeignClient.updateUserBalance(updatedBalanceBuyer, idBuyer);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		
 		return transaction;
 
 	}
 
 	private boolean hasBalance(BigDecimal balance, String token) {
-		
-		if(userFeignClient.hasBalance(balance, token)) {
+
+		if (userFeignClient.hasBalance(balance, token)) {
 			return true;
 		}
-		
+
 		return false;
 	}
 }
