@@ -5,7 +5,7 @@ spring:
     config:
       server:
         git:
-          default-label: funcionalidad/transacciones
+          default-label: funcionalidad/notificaciones
           uri: https://github.com/mg0mez/trading-plataform
           search-paths: config-data
   application:

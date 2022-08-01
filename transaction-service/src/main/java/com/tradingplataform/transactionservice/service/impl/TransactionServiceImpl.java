@@ -8,11 +8,13 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.tradingplataform.transactionservice.feignclient.NotificationFeign;
 import com.tradingplataform.transactionservice.feignclient.Product;
 import com.tradingplataform.transactionservice.feignclient.ProductFeign;
 import com.tradingplataform.transactionservice.feignclient.User;
 import com.tradingplataform.transactionservice.feignclient.UserFeignClient;
 import com.tradingplataform.transactionservice.model.Transaction;
+import com.tradingplataform.transactionservice.model.dto.NotificationDTO;
 import com.tradingplataform.transactionservice.model.dto.TransactionDTO;
 import com.tradingplataform.transactionservice.repository.TransactionRespository;
 import com.tradingplataform.transactionservice.service.ITransactionService;
@@ -28,6 +30,9 @@ public class TransactionServiceImpl implements ITransactionService {
 
 	@Autowired
 	private ProductFeign productFeign;
+	
+	@Autowired
+	private NotificationFeign notificationFeign;
 
 	@Override
 	public Optional<Transaction> findById(int id) {
@@ -155,6 +160,11 @@ public class TransactionServiceImpl implements ITransactionService {
 			return null;
 		}
 		
+		// Envio de notificaion al comprador
+		if(!sendMailNotification(buyer.getEmail())) {
+			System.out.println("error al enviar el email");
+		}
+		
 		return transaction;
 
 	}
@@ -166,5 +176,18 @@ public class TransactionServiceImpl implements ITransactionService {
 		}
 
 		return false;
+	}
+	
+	private boolean sendMailNotification(String email) {
+		
+		NotificationDTO notificationDTO = new NotificationDTO(email, "Completed transaction", "Your buy order is terminated");
+		boolean mail = notificationFeign.sendEmail(null);
+		
+		if(mail) {
+			return true;
+		}
+		
+		return false;
+		
 	}
 }

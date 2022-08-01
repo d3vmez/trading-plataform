@@ -33,4 +33,10 @@ spring:
             - Path=/transaction/**
           filters:
             - AuthFilter
+        - id: notification-service
+          uri: lb://notification-service
+          predicates:
+            - Path=/notification/**
+          filters:
+            - AuthFilter
         
