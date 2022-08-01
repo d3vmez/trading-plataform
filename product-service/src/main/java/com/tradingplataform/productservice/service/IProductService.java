@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import com.tradingplataform.productservice.model.Product;
 
-
 public interface IProductService {
 	
 	public List<Product> findAll();
