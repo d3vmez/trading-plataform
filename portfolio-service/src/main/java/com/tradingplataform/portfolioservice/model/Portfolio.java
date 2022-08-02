@@ -19,6 +19,6 @@ public class Portfolio {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String productName;
-	private int idUser;
+	private int userId;
 	private int cuantity;
 }

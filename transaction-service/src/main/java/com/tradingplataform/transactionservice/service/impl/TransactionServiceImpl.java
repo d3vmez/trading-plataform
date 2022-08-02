@@ -8,6 +8,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.tradingplataform.transactionservice.feignclient.Portfolio;
+import com.tradingplataform.transactionservice.feignclient.PortfolioFeign;
 import com.tradingplataform.transactionservice.feignclient.Product;
 import com.tradingplataform.transactionservice.feignclient.ProductFeign;
 import com.tradingplataform.transactionservice.feignclient.User;
@@ -28,6 +30,9 @@ public class TransactionServiceImpl implements ITransactionService {
 
 	@Autowired
 	private ProductFeign productFeign;
+	
+	@Autowired
+	private PortfolioFeign feignPortfolio;
 
 	@Override
 	public Optional<Transaction> findById(int id) {
@@ -154,6 +159,13 @@ public class TransactionServiceImpl implements ITransactionService {
 			e.printStackTrace();
 			return null;
 		}
+		
+		Portfolio portfolio = new Portfolio();
+		portfolio.setProductName(product.getName());
+		portfolio.setIdUser(idBuyer);
+		portfolio.setCuantity(cuantity);
+		
+		feignPortfolio.save(portfolio);
 		
 		return transaction;
 

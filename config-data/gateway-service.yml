@@ -33,4 +33,10 @@ spring:
             - Path=/transaction/**
           filters:
             - AuthFilter
+        - id: portfolio-service
+          uri: lb://portfolio-service
+          predicates:
+            - Path=/portfolio/**
+          filters:
+            - AuthFilter
         
