@@ -17,6 +17,6 @@ public interface PortfolioFeign {
 	@RequestMapping(method = RequestMethod.GET, value = "/portfolio/byuser/{userId}")
 	public List<Portfolio> getByUserId(@PathVariable("userId") int userId);
 	
-	@RequestMapping(method = RequestMethod.POST, value = "/portfolio/byuser/{userId}")
+	@RequestMapping(method = RequestMethod.POST, value = "/portfolio")
 	public Portfolio save(@RequestBody Portfolio portfolio);
 }

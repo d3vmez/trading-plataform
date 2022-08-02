@@ -162,7 +162,7 @@ public class TransactionServiceImpl implements ITransactionService {
 		
 		Portfolio portfolio = new Portfolio();
 		portfolio.setProductName(product.getName());
-		portfolio.setIdUser(idBuyer);
+		portfolio.setUserId(idBuyer);
 		portfolio.setCuantity(cuantity);
 		
 		feignPortfolio.save(portfolio);

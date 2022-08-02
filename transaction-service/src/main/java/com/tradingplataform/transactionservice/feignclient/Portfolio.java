@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 public class Portfolio {
 
 	private String productName;
-	private int idUser;
+	private int userId;
 	private int cuantity;
 }
