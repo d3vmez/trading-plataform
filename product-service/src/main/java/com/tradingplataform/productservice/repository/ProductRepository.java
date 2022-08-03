@@ -11,5 +11,6 @@ import com.tradingplataform.productservice.model.Product;
 public interface ProductRepository extends JpaRepository<Product, Integer>{
 
 	List<Product> findByUserId(int userId);
+	Product findByName(String name);
 	
 }

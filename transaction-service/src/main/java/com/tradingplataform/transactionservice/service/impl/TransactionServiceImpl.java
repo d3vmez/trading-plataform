@@ -8,16 +8,16 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
+import com.tradingplataform.transactionservice.feignclient.NotificationFeign;
 import com.tradingplataform.transactionservice.feignclient.Portfolio;
 import com.tradingplataform.transactionservice.feignclient.PortfolioFeign;
-import com.tradingplataform.transactionservice.feignclient.NotificationFeign;
 import com.tradingplataform.transactionservice.feignclient.Product;
 import com.tradingplataform.transactionservice.feignclient.ProductFeign;
 import com.tradingplataform.transactionservice.feignclient.User;
 import com.tradingplataform.transactionservice.feignclient.UserFeignClient;
 import com.tradingplataform.transactionservice.model.Transaction;
 import com.tradingplataform.transactionservice.model.dto.NotificationDTO;
+import com.tradingplataform.transactionservice.model.dto.PortfolioDTO;
 import com.tradingplataform.transactionservice.model.dto.TransactionDTO;
 import com.tradingplataform.transactionservice.repository.TransactionRespository;
 import com.tradingplataform.transactionservice.service.ITransactionService;
@@ -35,7 +35,6 @@ public class TransactionServiceImpl implements ITransactionService {
 	private ProductFeign productFeign;
 	
 	@Autowired
-
 	private PortfolioFeign feignPortfolio;
 
 	private NotificationFeign notificationFeign;
@@ -183,6 +182,34 @@ public class TransactionServiceImpl implements ITransactionService {
 
 	}
 
+	@Override
+	public Transaction sell(PortfolioDTO dto, String token) {
+		
+		Product product = productFeign.getProductByName(dto.getProductName());
+		
+		if(product == null) {
+			return null;
+		}
+		
+		Transaction transaction = new Transaction();
+		
+		int cuantity = dto.getCuantity();
+		int idProduct = product.getId();
+		int idSeller = dto.getUserId(); 
+		BigDecimal price = product.getPrice();
+		
+		transaction.setCuantity(cuantity);
+		transaction.setDate(null);
+		transaction.setIdBuyer(0);
+		transaction.setIdProduct(idProduct);
+		transaction.setIdSeller(idSeller);
+		transaction.setPrice(price);
+				
+		this.save(transaction);
+		
+		return transaction;
+	}
+	
 	private boolean hasBalance(BigDecimal balance, String token) {
 
 		if (userFeignClient.hasBalance(balance, token)) {
@@ -204,4 +231,5 @@ public class TransactionServiceImpl implements ITransactionService {
 		return false;
 		
 	}
+
 }

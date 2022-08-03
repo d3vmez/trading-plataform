@@ -59,4 +59,15 @@ public class ExchangerInfoController {
 		
 	}
 	
+	@GetMapping("/byname/{name}")
+	public ResponseEntity<Product> getProductByName(@PathVariable("name") String name){
+		Product product = productService.findByName(name);
+		
+		if(product == null) {
+			return ResponseEntity.noContent().build();
+		}
+		
+		return ResponseEntity.ok(product);
+	}
+	
 }
