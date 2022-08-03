@@ -17,6 +17,7 @@ spring:
         corsConfiguration:
           '[/**]':
             allowedOrigins: "*"
+            allowedHeaders: "*"
             allowedMethods:
             - GET
             - POST
