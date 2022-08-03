@@ -25,7 +25,7 @@ import com.tradingplataform.authservice.service.impl.ExchangerInfoService;
 
 @RestController
 @RequestMapping("/auth")
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:8090")
 public class AuthUserController {
 	
 	@Autowired
