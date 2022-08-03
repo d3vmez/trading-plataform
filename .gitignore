@@ -1,2 +1,3 @@
 /.metadata/
 zipkin-server-2.23.18-exec.jar
+/notification-service/src/main/resources/application.properties

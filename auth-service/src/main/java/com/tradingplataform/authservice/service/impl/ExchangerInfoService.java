@@ -48,10 +48,13 @@ public class ExchangerInfoService {
 
 	public boolean userHasBalance(BigDecimal transactionPrice, String token) {
 		User user = this.getUser(token);
-		
+
 		if(user==null) {
 			return false;
 		}
+		
+		System.out.println("User balance = " + user.getBalance());
+		System.out.println("Balance = " + transactionPrice);
 		
 		if(transactionPrice.compareTo(user.getBalance()) == 1) {
 			return false;

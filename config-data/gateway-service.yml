@@ -37,6 +37,10 @@ spring:
           uri: lb://portfolio-service
           predicates:
             - Path=/portfolio/**
+        - id: notification-service
+          uri: lb://notification-service
+          predicates:
+            - Path=/notification/**
           filters:
             - AuthFilter
         
