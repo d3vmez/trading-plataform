@@ -16,4 +16,7 @@ public interface ProductFeign {
 	
 	@RequestMapping(method = RequestMethod.POST,value = "/exchangeproduct/updateCuantity/{idProducto}/{cuantity}")
 	public Product updateProduct(@PathVariable("idProducto") int idProduct, @PathVariable("cuantity") int cuantity);
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/exchangeproduct/byname/{name}")
+	public Product getProductByName(@PathVariable("name") String name);
 }

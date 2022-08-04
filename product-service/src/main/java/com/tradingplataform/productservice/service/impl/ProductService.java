@@ -55,4 +55,9 @@ public class ProductService implements IProductService{
 		return productRepository.save(product);
 	}
 
+	@Override
+	public Product findByName(String name) {
+		return productRepository.findByName(name);
+	}
+
 }
