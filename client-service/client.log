@@ -1,0 +1,1 @@
+[2022-08-04 09:37:40] [ ERROR] [ProductsController:44] Not found token in /products: Cannot invoke "String.split(String)" because the return value of "java.util.Map.get(Object)" is null

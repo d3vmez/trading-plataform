@@ -1,6 +1,7 @@
 package com.tradingplataform.authservice.service.impl;
 
 
+import java.math.BigDecimal;
 import java.util.Optional;
 
 import org.apache.log4j.Logger;
@@ -54,6 +55,7 @@ public class AuthUserService{
 		}
 		
 		User user = new User(registerUserDto.getEmail(), passwordEncoder.encode(registerUserDto.getPassword()));
+		user.setBalance(BigDecimal.ZERO);
 		
 		return userService.save(user);
 		

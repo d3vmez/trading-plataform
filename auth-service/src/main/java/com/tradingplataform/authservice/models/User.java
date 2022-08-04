@@ -23,7 +23,6 @@ public class User {
 	private String email;
 	@NotNull
 	private String password;
-	@NotNull
 	@Min(value = 0)
 	private BigDecimal balance;
 	
