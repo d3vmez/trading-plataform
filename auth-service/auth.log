@@ -213,3 +213,9 @@
 [2022-08-03 13:04:28] [ INFO ] [UserService:39] User saved with id: 0
 [2022-08-03 15:00:42] [ ERROR] [JwtProvider:94] Expired Jwt
 [2022-08-04 08:23:48] [ ERROR] [JwtProvider:94] Expired Jwt
+[2022-08-04 10:46:27] [ ERROR] [JwtProvider:94] Expired Jwt
+[2022-08-04 10:46:30] [ ERROR] [JwtProvider:94] Expired Jwt
+[2022-08-04 10:46:34] [ ERROR] [JwtProvider:94] Expired Jwt
+[2022-08-04 10:46:34] [ ERROR] [JwtProvider:94] Expired Jwt
+[2022-08-04 10:46:35] [ ERROR] [JwtProvider:94] Expired Jwt
+[2022-08-04 10:46:44] [ ERROR] [JwtProvider:94] Expired Jwt
