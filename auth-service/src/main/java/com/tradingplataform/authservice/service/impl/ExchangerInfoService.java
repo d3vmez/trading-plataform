@@ -56,7 +56,8 @@ public class ExchangerInfoService {
 		}
 
 		if (token.startsWith("Bearer")) {
-			return token.replace("Bearer", "");
+			token = token.replace("Bearer ", "");
+			return token;
 		}
 
 		return token;
@@ -67,6 +68,7 @@ public class ExchangerInfoService {
 		// Obtener token sin Bearer
 		String formatedToken = this.getToken(token);
 
+		System.out.println(formatedToken);
 		// Comprobar si el token es válido
 		if (!jwtProvider.isValidateToken(formatedToken)) {
 			return null;
