@@ -21,7 +21,7 @@ public class ExchangeInfoService {
 			return false;
 		}
 		
-		Product product = productService.find(id).get();
+		Product product = productOp.get();
 		
 		if(cuantity>product.getCuantity()) {
 			return false;
@@ -38,7 +38,7 @@ public class ExchangeInfoService {
 			return null;
 		}
 		
-		Product product = productService.find(id).get();
+		Product product = productOp.get();
 		
 		int newCuantity = product.getCuantity()-cuantity;
 		
