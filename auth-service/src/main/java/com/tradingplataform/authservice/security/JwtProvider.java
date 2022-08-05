@@ -53,10 +53,9 @@ public class JwtProvider {
 		this.secretKey = Keys.hmacShaKeyFor(keyBytes);
 	}
 
-	public String createToken(Authentication authentication) {
+	public String createToken(String email) {
 
-		SecurityUser securityUser = (SecurityUser) authentication.getPrincipal();
-		String token = Jwts.builder().setSubject(securityUser.getUsername()).setIssuedAt(new Date())
+		String token = Jwts.builder().setSubject(email).setIssuedAt(new Date())
 				.setExpiration(new Date(System.currentTimeMillis() + expiration_time)).signWith(secretKey).compact();
 
 		return token;

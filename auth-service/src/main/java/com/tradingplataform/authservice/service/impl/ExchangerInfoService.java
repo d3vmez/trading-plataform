@@ -32,20 +32,6 @@ public class ExchangerInfoService {
 
 	}
 
-	private String getToken(String token) {
-
-		if (token == null) {
-			return null;
-		}
-
-		if (token.startsWith("Bearer")) {
-			return token.replace("Bearer", "");
-		}
-
-		return token;
-
-	}
-
 	public boolean userHasBalance(BigDecimal transactionPrice, String token) {
 		User user = this.getUser(token);
 
@@ -61,6 +47,20 @@ public class ExchangerInfoService {
 		}
 		
 		return true;
+	}
+	
+	private String getToken(String token) {
+
+		if (token == null) {
+			return null;
+		}
+
+		if (token.startsWith("Bearer")) {
+			return token.replace("Bearer", "");
+		}
+
+		return token;
+
 	}
 
 	private User getUser(String token) {

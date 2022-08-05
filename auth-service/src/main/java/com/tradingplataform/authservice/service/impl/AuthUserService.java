@@ -30,10 +30,7 @@ public class AuthUserService{
 		
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
-	
-	@Autowired
-	private AuthenticationManager authenticationManager;
-	
+		
 	@Autowired
 	private JwtProvider jwtProvider;
 	
@@ -56,8 +53,9 @@ public class AuthUserService{
 		
 		User user = new User(registerUserDto.getEmail(), passwordEncoder.encode(registerUserDto.getPassword()));
 		user.setBalance(BigDecimal.ZERO);
+		userService.save(user);
 		
-		return userService.save(user);
+		return user;
 		
 	}
 	
@@ -67,19 +65,17 @@ public class AuthUserService{
 			return null;
 		}
 		
-		try {
+		// Comprobar si la contraseña encriptada coincide con la introducida en el login
+		if(passwordEncoder.matches(loginUserDto.getPassword(), opUser.get().getPassword())) {
 			
-		Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginUserDto.getEmail(), loginUserDto.getPassword()));
-		SecurityContextHolder.getContext().setAuthentication(authentication);
-		String token = jwtProvider.createToken(authentication);
-		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-		
-		return new ResponseTokenDto(token,userDetails.getUsername());
-		
-		}catch (Exception e) {
+			// Generar token
+			String token = jwtProvider.createToken(loginUserDto.getEmail());
+			ResponseTokenDto responseTokenDto = new ResponseTokenDto(token,loginUserDto.getEmail());
+			return responseTokenDto;
 			
-			return null;
 		}
+		
+		return null;
 				
 	}
 	
