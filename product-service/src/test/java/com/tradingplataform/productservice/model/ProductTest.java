@@ -35,6 +35,7 @@ class ProductTest {
 		
 		assertEquals(p1.equals(p2), false);
 		assertEquals("Product(id=1, name=producto 1, price=10, userId=10, cuantity=1)", p1.toString());
+		assertEquals(1078170868, p1.hashCode());
 	}
 
 }

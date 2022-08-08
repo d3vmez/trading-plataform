@@ -40,7 +40,7 @@ public class PortfolioController {
 			
 		return ResponseEntity.ok(portfolio.get());
 	}
-
+	
 	@GetMapping("/byuser/{userId}")
     public ResponseEntity <List<Portfolio>> getByUserId(@PathVariable("userId") int userId) {
         List<Portfolio> portfolio = portfolioService.findAllByUserId(userId);
