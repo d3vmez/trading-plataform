@@ -37,16 +37,21 @@ public class User {
 	// Constructors
 	/////////////////////////////////////////////////////////////////
 	public User() {
-		super();
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public User(@NotNull String email, @NotNull String password) {
-		super();
 		this.email = email;
 		this.password = password;
 	}
 	
+	
+	public User(@NotNull String email, @NotNull String password, @Min(0) BigDecimal balance) {
+		this.email = email;
+		this.password = password;
+		this.balance = balance;
+	}
+
 	// Access methods
 	/////////////////////////////////////////////////////////////////
 
@@ -75,10 +80,5 @@ public class User {
 	}
 	
 	/////////////////////////////////////////////////////////////////
-	
-//	@Override
-//	public String toString() {
-//		return "Client [id=" + id + ", email=" + email + ", password=" + password + "]";
-//	}
-	
+		
 }

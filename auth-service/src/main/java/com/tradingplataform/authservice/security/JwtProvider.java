@@ -7,11 +7,7 @@ import javax.crypto.SecretKey;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
-
-import com.tradingplataform.authservice.models.SecurityUser;
-
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
@@ -50,7 +46,7 @@ public class JwtProvider {
 	protected void init() {
 
 		byte[] keyBytes = Decoders.BASE64.decode(this.secret_key);
-		this.secretKey = Keys.hmacShaKeyFor(keyBytes);
+		this.setSecretKey(Keys.hmacShaKeyFor(keyBytes));
 	}
 
 	public String createToken(String email) {
@@ -104,5 +100,13 @@ public class JwtProvider {
 
 		return false;
 
+	}
+
+	public SecretKey getSecretKey() {
+		return secretKey;
+	}
+
+	public void setSecretKey(SecretKey secretKey) {
+		this.secretKey = secretKey;
 	}
 }
