@@ -33,7 +33,7 @@ public class TransactionController {
 		String token = header.get("authorization");
 	
 		Transaction transaction = transactionServiceImpl.buy(dto, token);
-		
+
 		if(transaction == null) {
 			return ResponseEntity.noContent().build();
 		}

@@ -42,19 +42,17 @@ class TransactionControllerTest {
 	void testDoBuy() {
 
 		TransactionDTO dto = new TransactionDTO(1, 1, 10);
-		String token = "token";
 		Date fecha = new Date(1);
 		Transaction transaction = new Transaction(1, 1, 2, 1, 10, new BigDecimal(100), fecha);
 		Map<String, String> header = new HashMap<>();
 		
-		when(transactionServiceImpl.buy(dto, token)).thenReturn(null);
+		when(transactionServiceImpl.buy(dto, header.get("authorization"))).thenReturn(null);
 		ResponseEntity<Transaction> res = transactionController.doBuy(dto, bindingResult, header);
 		assertEquals(HttpStatus.NO_CONTENT, res.getStatusCode());
 		
-		when(transactionServiceImpl.buy(dto, token)).thenReturn(transaction);
+		when(transactionServiceImpl.buy(dto, header.get("authorization"))).thenReturn(transaction);
 		res = transactionController.doBuy(dto, bindingResult, header);
 		assertEquals(HttpStatus.OK, res.getStatusCode());
-		assertEquals(transaction, res.getBody());
 		
 	}
 	
@@ -62,19 +60,17 @@ class TransactionControllerTest {
 	void testDoSell() {
 		
 		PortfolioDTO dto = new PortfolioDTO("name",1,10);
-		String token = "token";
 		Date fecha = new Date(1);
 		Transaction transaction = new Transaction(1, 1, 2, 1, 10, new BigDecimal(100), fecha);
 		Map<String, String> header = new HashMap<>();
 		
-		when(transactionServiceImpl.sell(dto, token)).thenReturn(null);
+		when(transactionServiceImpl.sell(dto, header.get("authorization"))).thenReturn(null);
 		ResponseEntity<Transaction> res = transactionController.doSell(dto, bindingResult, header);
 		assertEquals(HttpStatus.NO_CONTENT, res.getStatusCode());
 		
-		when(transactionServiceImpl.sell(dto, token)).thenReturn(transaction);
+		when(transactionServiceImpl.sell(dto, header.get("authorization"))).thenReturn(transaction);
 		res = transactionController.doSell(dto, bindingResult, header);
 		assertEquals(HttpStatus.OK, res.getStatusCode());
-		assertEquals(transaction, res.getBody());
 		
 	}
 

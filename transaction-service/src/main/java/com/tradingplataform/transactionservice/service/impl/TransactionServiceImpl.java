@@ -209,7 +209,7 @@ public class TransactionServiceImpl implements ITransactionService {
 		return transaction;
 	}
 	
-	public boolean hasBalance(BigDecimal balance, String token) {
+	private boolean hasBalance(BigDecimal balance, String token) {
 
 		if (userFeignClient.hasBalance(balance, token)) {
 			return true;
@@ -218,12 +218,12 @@ public class TransactionServiceImpl implements ITransactionService {
 		return false;
 	}
 	
-	public boolean sendMailNotification(String email) {
+	private boolean sendMailNotification(String email) {
 		
 		NotificationDTO notificationDTO = new NotificationDTO(email, "Completed transaction", "Your buy order is terminated");
-		boolean mail = notificationFeign.sendEmail(notificationDTO);
+		//boolean mail = notificationFeign.sendEmail(notificationDTO);
 		
-		if(mail) {
+		if(notificationFeign.sendEmail(notificationDTO)) {
 			return true;
 		}
 		
