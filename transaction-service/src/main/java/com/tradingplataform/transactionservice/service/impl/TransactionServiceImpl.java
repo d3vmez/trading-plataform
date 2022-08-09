@@ -111,8 +111,7 @@ public class TransactionServiceImpl implements ITransactionService {
 		}
 		
 		// TODO Comprabar que el comprador tiene saldo suficiente
-		// TODO Comprobar que el producto tiene cantidad suficiente
-
+		// TODO Comprobar que el producto tiene cantidad suficiente 
 		
 		//Cambio de propietario
 		product.setUserId(buyer.getId());
@@ -210,7 +209,7 @@ public class TransactionServiceImpl implements ITransactionService {
 		return transaction;
 	}
 	
-	private boolean hasBalance(BigDecimal balance, String token) {
+	public boolean hasBalance(BigDecimal balance, String token) {
 
 		if (userFeignClient.hasBalance(balance, token)) {
 			return true;
@@ -219,7 +218,7 @@ public class TransactionServiceImpl implements ITransactionService {
 		return false;
 	}
 	
-	private boolean sendMailNotification(String email) {
+	public boolean sendMailNotification(String email) {
 		
 		NotificationDTO notificationDTO = new NotificationDTO(email, "Completed transaction", "Your buy order is terminated");
 		boolean mail = notificationFeign.sendEmail(notificationDTO);
